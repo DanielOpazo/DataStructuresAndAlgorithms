@@ -41,8 +41,6 @@ void test_count(void) {
 	RUN_TEST(test_count_oneItem);
 	RUN_TEST(test_count_manyItems);
 
-	//result |= test_count_oneItem();
-	//result |= test_count_manyItems();
 	if (result != PASS) {
 		printf("TEST test_count FAILED\n\n");
 	}
