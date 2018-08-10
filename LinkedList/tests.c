@@ -77,3 +77,16 @@ void test_pop(void) {
 
 	printf("TEST test_pop %s\n", result == PASS ? PASS_STR : FAIL_STR);
 }
+
+void test_reverse(void) {
+	struct node* head = NULL;
+	for (int idx = 0; idx < 5; idx++) {
+		push(&head, idx);
+	}
+	printf("\nList before reversing\n");
+	printList(head);
+	reverseList(&head);
+	printf("List after reversing\n");
+	printList(head);
+	destroyList(&head);
+}

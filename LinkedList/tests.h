@@ -20,3 +20,4 @@
 typedef int tUnitTestResult;
 void test_count(void);
 void test_pop(void);
+void test_reverse(void);

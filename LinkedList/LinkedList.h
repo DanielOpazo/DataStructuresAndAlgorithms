@@ -15,3 +15,4 @@ void destroyList(struct node** head);
 int count(struct node* head);
 //print the elements in the list
 void printList(struct node* head);
+void reverseList(struct node** head);

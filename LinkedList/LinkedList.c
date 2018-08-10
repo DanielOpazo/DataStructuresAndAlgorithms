@@ -87,3 +87,23 @@ int count(struct node* head) {
 	}
 	return count;
 }
+
+void recurse(struct node* curr, struct node* prev, struct node** head) {
+	struct node* copyNext = curr->next;
+	//my next is my previous
+	curr->next = prev;
+
+	//base case. at end of list
+	if (copyNext == NULL) {
+		//current is my new head
+		*head = curr;
+		return;
+	}
+
+	recurse(copyNext, curr, head);
+}
+
+//recursively reverse
+void reverseList(struct node** head) {
+	recurse(*head, NULL, head);
+}
