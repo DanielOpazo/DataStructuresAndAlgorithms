@@ -1,39 +1,40 @@
-#include <assert.h>
 #include <stdio.h>
 #include "tests.h"
 #include "LinkedList.h"
 
+/* all these tests rely on push so they aren't really true unit tests,
+ * but push is a utility function for linked lists, and is
+ * necessary to construct lists
+ */
 
 tUnitTestResult test_count_emptyList() {
 	struct node* head = NULL;
-	//return (count(head) == 0) ? PASS : FAIL
-	CHECK_RESULT(count(head) == 0);
+	int result = count(head);
 	destroyList(&head);
+	CHECK_RESULT(result == 0);
 }
 
 tUnitTestResult test_count_oneItem() {
 	struct node* head = NULL;
 	push(&head, 1);
-	CHECK_RESULT(count(head) == 1);
+	int result = count(head);
 	destroyList(&head);
+	CHECK_RESULT(result == 1);
 }
 
 tUnitTestResult test_count_manyItems() {
 	struct node* head = NULL;
-	int numElems = 1000;
+	const int numElems = 1000;
 	for (int i = 0; i < numElems; i++) {
 		push(&head, i);
 	}
-	CHECK_RESULT(count(head) == numElems);
+	int result = count(head);
 	destroyList(&head);
+	CHECK_RESULT(result == numElems);
 }
 
-/* test_count relies on push so not a true unit test,
- * but push is a utility function for linked lists, and is
- * necessary to construct lists
- */
 void test_count(void) {
-	printf("RUNNING test_count\n");
+	printf("\nRUNNING test_count\n");
 	tUnitTestResult result = PASS;
 	tUnitTestResult lastTest;
 
@@ -41,10 +42,38 @@ void test_count(void) {
 	RUN_TEST(test_count_oneItem);
 	RUN_TEST(test_count_manyItems);
 
-	if (result != PASS) {
-		printf("TEST test_count FAILED\n\n");
+	printf("TEST test_count %s\n", result == PASS ? PASS_STR : FAIL_STR);	
+}
+
+tUnitTestResult test_pop_oneItem(void) {
+	struct node* head = NULL;
+	push(&head, 5);
+	int val = pop(&head);
+	destroyList(&head);
+	CHECK_RESULT(val == 5);
+}
+
+tUnitTestResult test_pop_fiveItems(void) {
+	struct node* head = NULL;
+	for (int idx = 1; idx < 6; idx++) {
+		push(&head, idx);
 	}
-	else {
-		printf("TEST test_count PASSED\n\n");
+	tUnitTestResult result = PASS;
+	for (int idx = 5; idx > 0; idx--) {
+		result |= (pop(&head) == idx) ? PASS : FAIL;
 	}
+	destroyList(&head);
+	CHECK_RESULT(result == PASS);
+}
+
+void test_pop(void) {
+	printf("\nRUNNING test_pop\n");
+	tUnitTestResult result = PASS;
+	tUnitTestResult lastTest;
+
+	//can't unit test empty list because I put an assert in there
+	RUN_TEST(test_pop_oneItem);
+	RUN_TEST(test_pop_fiveItems);
+
+	printf("TEST test_pop %s\n", result == PASS ? PASS_STR : FAIL_STR);
 }

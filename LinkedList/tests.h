@@ -4,6 +4,8 @@
 
 #define PASS 0
 #define FAIL 1
+#define PASS_STR "PASSED"
+#define FAIL_STR "FAILED"
 #define CHECK_RESULT(_condition) \
 	return (_condition) ? PASS : FAIL; \
 
@@ -17,3 +19,4 @@
 
 typedef int tUnitTestResult;
 void test_count(void);
+void test_pop(void);
