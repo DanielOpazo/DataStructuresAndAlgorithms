@@ -54,3 +54,21 @@ int maxDepth(struct node* node) {
 	int depthRight = 1 + maxDepth(node->right);
 	return (depthLeft > depthRight) ? depthLeft : depthRight;
 }
+
+void printTreeInOrder(struct node* node) {
+	if (node == NULL)
+		return;
+
+	printTreeInOrder(node->left);
+	printf("%d\n", node->data);
+	printTreeInOrder(node->right);
+}
+
+void printTreePostOrder(struct node* node) {
+	if (node == NULL)
+		return;
+
+	printTreePostOrder(node->left);
+	printTreePostOrder(node->right);
+	printf("%d\n", node->data);
+}

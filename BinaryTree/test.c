@@ -2,6 +2,8 @@
 #include "test.h"
 #include "BinaryTree.h"
 
+//Note: None of these tests free any memory
+
 /*
  * Generates this tree
  *				5
@@ -136,3 +138,31 @@ tTestResult testMaxDepth(void) {
 	result |= testMaxDepthManyElements();
 	printf("testMaxDepth %s\n", (result == SUCCESS) ? success_str : fail_str);
 }
+
+void testPrintTreeInOrder(void) {
+	printf("\nRunning test: testPrintTreeInOrder\n");
+	struct node* root = NULL;
+	printf("print empty tree\n");
+	printTreeInOrder(root);
+	root = newNode(1);
+	printf("print one element tree\n");
+	printTreeInOrder(root);
+	root = generateBST();
+	printf("print many element tree\n");
+	printTreeInOrder(root);
+}
+
+void testPrintTreePostOrder(void) {
+	printf("\nRunning test: testPrintTreePostOrder\n");
+	struct node* root = NULL;
+	printf("print empty tree\n");
+	printTreePostOrder(root);
+	root = newNode(1);
+	printf("print one element tree\n");
+	printTreePostOrder(root);
+	root = generateBST();
+	printf("print many element tree\n");
+	printTreePostOrder(root);
+}
+
+

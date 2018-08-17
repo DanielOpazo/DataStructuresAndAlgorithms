@@ -6,4 +6,6 @@ int main(void) {
 	testLookupBST();
 	testSize();
 	testMaxDepth();
+	testPrintTreeInOrder();
+	testPrintTreePostOrder();
 }
