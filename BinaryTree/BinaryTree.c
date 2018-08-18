@@ -72,3 +72,25 @@ void printTreePostOrder(struct node* node) {
 	printTreePostOrder(node->right);
 	printf("%d\n", node->data);
 }
+
+//this'll return true for empty tree and sum 0
+tBoolean hasPathSum(struct node* node, int sum) {
+	if (node == NULL)
+		return (sum == 0) ? TRUE : FALSE;
+
+	if (hasPathSum(node->left, sum - node->data) ||
+		 hasPathSum(node->right, sum - node->data))
+		return TRUE;
+	
+	return FALSE;
+}
+
+void mirror(struct node* node) {
+	if (node == NULL) return;
+	struct node* temp;
+	temp = node->left;
+	node->left = node->right;
+	node->right = temp;
+	mirror(node->left);
+	mirror(node->right);
+}

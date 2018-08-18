@@ -10,4 +10,7 @@ struct node* generateBST();
 tTestResult testLookupBST(void);	
 tTestResult testSize(void);
 tTestResult testMaxDepth(void);
+tTestResult testHasPathSum(void);
 void testPrintTreeInOrder(void);
+void testPrintTreePostOrder(void);
+

@@ -40,7 +40,7 @@ tTestResult testLookupBSTPopulatedTree(void) {
 	struct node* root = generateBST();
 	for (int target = 1; target < 8; target++) {
 		if (lookupBST(root, target) == FALSE) {
-			result == FAIL;
+			result = FAIL;
 		}
 	}
 	printf("%s\n", (result == SUCCESS) ? success_str : fail_str);
@@ -53,6 +53,7 @@ tTestResult testLookupBST(void) {
 	result |= testLookupBSTEmptyTree();
 	result |= testLookupBSTPopulatedTree();
 	printf("testLookupBST %s\n", (result == SUCCESS) ? success_str : fail_str);
+	return result;
 }
 
 tTestResult testSizeEmptyTree(void) {
@@ -95,6 +96,7 @@ tTestResult testSize(void) {
 	result |= testSizeOneElement();
 	result |= testSizeManyElements();
 	printf("testSize %s\n", (result == SUCCESS) ? success_str : fail_str);
+	return result;
 }
 
 tTestResult testMaxDepthEmptyTree(void) {
@@ -108,8 +110,8 @@ tTestResult testMaxDepthEmptyTree(void) {
 	return result;
 }
 
-tTestResult  testMaxDepthOneElement(void) {
-	printf("\ttest:  testMaxDepthOneElement: ");
+tTestResult testMaxDepthOneElement(void) {
+	printf("\ttest: testMaxDepthOneElement: ");
 	tTestResult result = FAIL;
 	struct node* root = newNode(1);
 	if (maxDepth(root) == 1) {
@@ -137,6 +139,63 @@ tTestResult testMaxDepth(void) {
 	result |= testMaxDepthOneElement();
 	result |= testMaxDepthManyElements();
 	printf("testMaxDepth %s\n", (result == SUCCESS) ? success_str : fail_str);
+	return result;
+}
+
+tTestResult testHasPathSumEmptyTree(void) {
+	printf("\ttest: testHasPathSumEmptyTree: ");
+	tTestResult result = FAIL;
+	struct node* root = NULL;
+	if (hasPathSum(root, 5) == FALSE) {
+		result = SUCCESS;
+	}
+	printf("%s\n", (result == SUCCESS) ? success_str : fail_str);
+	return result;
+}
+
+tTestResult testHasPathSumOneElement(void) {
+	printf("\ttest: testHasPathSumOneElement: ");
+	tTestResult result = FAIL;
+	struct node* root = newNode(6);
+	if (hasPathSum(root, 6) == TRUE) {
+		result = SUCCESS;
+	}
+	printf("%s\n", (result == SUCCESS) ? success_str : fail_str);
+	return result;
+}
+
+tTestResult testHasPathSumManyElements(void) {
+	printf("\ttest: testHasPathSumManyElements: ");
+	tTestResult result = SUCCESS;
+	struct node* root = generateBST();
+	if (hasPathSum(root, 11) == FALSE) {
+		result = FAIL;
+	}
+	if (hasPathSum(root, 12) == FALSE) {
+		result = FAIL;
+	}
+	if (hasPathSum(root, 27) == FALSE) {
+		result = FAIL;
+	}
+	if (hasPathSum(root, 10) == TRUE) {
+		result = FAIL;
+	}
+	if (hasPathSum(root, 0) == TRUE) {
+		result = FAIL;
+	}
+	printf("%s\n", (result == SUCCESS) ? success_str : fail_str);
+	return result;
+}
+
+
+tTestResult testHasPathSum(void) {
+	printf("\nRunning test: testHasPathSum\n");
+	tTestResult result = SUCCESS;
+	result |= testHasPathSumEmptyTree();
+	result |= testHasPathSumOneElement();
+	result |= testHasPathSumManyElements();
+	printf("testHasPathSum %s\n", (result == SUCCESS) ? success_str : fail_str);
+	return result;
 }
 
 void testPrintTreeInOrder(void) {
@@ -164,5 +223,3 @@ void testPrintTreePostOrder(void) {
 	printf("print many element tree\n");
 	printTreePostOrder(root);
 }
-
-

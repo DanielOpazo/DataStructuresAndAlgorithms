@@ -3,9 +3,10 @@
 #include "test.h"
 
 int main(void) {
+	testPrintTreeInOrder();
+	testPrintTreePostOrder();
 	testLookupBST();
 	testSize();
 	testMaxDepth();
-	testPrintTreeInOrder();
-	testPrintTreePostOrder();
+	testHasPathSum();
 }
